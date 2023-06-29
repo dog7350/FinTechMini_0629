@@ -6,3 +6,4 @@ public interface BoardInterface {
 	public void bDelete();
 	public void cInsert();
 }
+
