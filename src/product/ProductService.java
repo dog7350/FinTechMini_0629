@@ -70,7 +70,7 @@ public class ProductService implements ProductInterface {
 		for(i=0; i<arr.size(); i++) 
 			if (arr.get(i).getpNo() == num) break;
 		
-		if (i >= arr.size()) {
+		if (i - 1 > arr.size()) {
 			System.out.println("없는 상품 번호입니다.");
 			return;
 		}
@@ -79,11 +79,11 @@ public class ProductService implements ProductInterface {
 		int count = sc.nextInt();
 		
 		Object[] obj = new Object[2];
-		obj[1] = arr.get(i);
-		obj[2] = count;
+		obj[0] = arr.get(i - 1);
+		obj[1] = count;
 		order.add(obj);
 	}
-
+	
 	//상품 삭제
 	public void pDelete() {
 		if(checkAdmin() == true){

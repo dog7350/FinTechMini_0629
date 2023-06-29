@@ -56,6 +56,7 @@ public class MemberService implements MemberInterface {
 				if(list.get(i).getPw().equals(pw)) {
 					System.out.println("로그인성공!!!");
 					MyInfo.setMyInfo(list.get(i));
+					return;
 				}else {
 					System.out.println("비밀번호가 틀렸습니다.");
 				}
