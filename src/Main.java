@@ -24,9 +24,10 @@ import myinfo.*;
 */
 
 public class Main {
+	private static Scanner sc = new Scanner(System.in);
+	static ThreadFx fx = null;
+	
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		
 		BoardService board = BoardService.getInstance();
 		MemberService member = MemberService.getInstance();
 		ProductService product = ProductService.getInstace();
@@ -35,10 +36,85 @@ public class Main {
 		
 		while (flag) {
 			System.out.println("\n1. 회원관리(회원 가입, 로그인, 로그아웃, 회원 정보 수정, 회원 탈퇴)\n2. 상품관리(상품 등록, 상품 정보 수정, 상품 주문, 상품 삭제)\n"
-					+ "3. 게시판 관리(게시판 등록, 게시판 수정, 게시판 삭제, 댓글 작성)");
+					+ "3. 게시판 관리(게시판 등록, 게시판 수정, 게시판 삭제, 댓글 작성)\n4. 프로그램 종료");
 			switch(sc.nextInt()) {
-			
+				case 1 :
+					memberMenu();
+					break;
+				case 2 :
+					productMenu();
+					break;
+				case 3 :
+					if (MyInfo.getInstance() == null) System.out.print("\n로그인하세요.\n");
+					else boardMenu();
+					break;
+				case 4 :
+					System.out.println("\n프로그램 종료");
+					flag = false;
+					break;
 			}
+		}
+	}
+	
+	private static void memberMenu() {
+		System.out.print("\n1. 회원 가입\n2. 로그인\n3. 로그아웃\n4. 회원 정보 수정\n5. 회원 탈퇴\n명령어 입력\n>> ");
+		switch(sc.nextInt()) {
+			case 1 :
+				
+				break;
+			case 2 :
+				
+				if (MyInfo.getInstance() != null) {
+					fx = ThreadFx.getInstance();
+					fx.start();
+				}
+				break;
+			case 3 :
+				
+				if (fx != null) fx.delInstance();
+				break;
+			case 4 :
+				
+				break;
+			case 5 :
+				
+				break;
+		}
+	}
+	
+	private static void productMenu() {
+		System.out.print("\n1. 상품 등록\n2. 상품 정보 수정\n3. 상품 주문\n4. 상품 삭제\n명령어 입력\n>> ");
+		switch(sc.nextInt()) {
+			case 1 :
+				
+				break;
+			case 2 :
+				
+				break;
+			case 3 :
+				
+				break;
+			case 4 :
+				
+				break;
+		}
+	}
+	
+	private static void boardMenu() {
+		System.out.print("\n1. 게시판 등록\n2. 게시판 수정\n3. 게시판 삭제\n4. 댓글 작성\n명령어 입력\n>> ");
+		switch(sc.nextInt()) {
+			case 1 :
+				
+				break;
+			case 2 :
+				
+				break;
+			case 3 :
+				
+				break;
+			case 4 :
+				
+				break;
 		}
 	}
 }

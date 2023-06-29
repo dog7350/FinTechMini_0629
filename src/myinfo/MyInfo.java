@@ -35,5 +35,6 @@ public class MyInfo {
 		Address = null;
 		Age = null;
 		Admin = false;
+		instance = null;
 	}
 }
