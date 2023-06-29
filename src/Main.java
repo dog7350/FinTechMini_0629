@@ -20,13 +20,15 @@ import myinfo.*;
 
 	4. 게시판 관리
 		게시판 등록(bInsert), 게시판 수정(bModify), 게시판 삭제(bDelete), 댓글 작성(cInsert) 기능이 들어가 있으며 로그인이 된 경우에만 모든 기능을 사용할 수 있다.
-		게시판은 제목, 내용, 작성자, 댓글수가 있고 댓글은 게시판 번호, 내용, 작성자가 있으며 게시판이 삭제될 경우 해당 게시판에 종속된 모든 댓글이 삭제된다.
+		게시판은 게시판 번호, 제목, 내용, 작성자, 댓글수가 있고 댓글은 게시판 번호, 내용, 작성자가 있으며 게시판이 삭제될 경우 해당 게시판에 종속된 모든 댓글이 삭제된다.
  */
 
 public class Main {
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
+	private static Scanner sc = new Scanner(System.in);
+	static ThreadFx fx = null;
+	static boolean thread = false;
 
+	public static void main(String[] args) {
 		BoardService board = BoardService.getInstance();
 		MemberService member = MemberService.getInstance();
 		ProductService product = ProductService.getInstace();
@@ -34,11 +36,91 @@ public class Main {
 		boolean flag = true;
 
 		while (flag) {
-			System.out.println("\n1. 회원관리(회원 가입, 로그인, 로그아웃, 회원 정보 수정, 회원 탈퇴)\n2. 상품관리(상품 등록, 상품 정보 수정, 상품 주문, 상품 삭제)\n"
-					+ "3. 게시판 관리(게시판 등록, 게시판 수정, 게시판 삭제, 댓글 작성)");
+			System.out.print("\n1. 회원관리(회원 가입, 로그인, 로그아웃, 회원 정보 수정, 회원 탈퇴)\n2. 상품관리(상품 등록, 상품 정보 수정, 상품 주문, 상품 삭제)\n"
+					+ "3. 게시판 관리(게시판 등록, 게시판 수정, 게시판 삭제, 댓글 작성)\n4. 프로그램 종료\n명령어 입력\n>> ");
 			switch(sc.nextInt()) {
-			
+			case 1 :
+				memberMenu(member);
+				break;
+			case 2 :
+				productMenu(product);
+				break;
+			case 3 :
+				if (MyInfo.getInstance().getId() == null) System.out.print("\n로그인하세요.\n");
+				else boardMenu(board);
+				break;
+			case 4 :
+				System.out.println("\n프로그램 종료");
+				flag = false;
+				break;
 			}
 		}
-	
+	}
+
+
+	private static void memberMenu(MemberService member) {
+		System.out.print("\n1. 회원 가입\n2. 로그인\n3. 로그아웃\n4. 회원 정보 수정\n5. 회원 탈퇴\n명령어 입력\n>> ");
+		switch(sc.nextInt()) {
+		case 1 :
+			member.join();
+			break;
+		case 2 :
+			member.login();
+			if (MyInfo.getInstance() != null && thread == false) {
+				thread = true;
+				fx = ThreadFx.getInstance();
+				//fx.start();
+			}
+			break;
+		case 3 :
+			member.logout();
+			if (fx != null && thread == true) {
+				thread = false;
+				fx.delInstance();
+			}
+			break;
+		case 4 :
+			member.modify();
+			break;
+		case 5 :
+			member.delete();
+			break;
+		}
+	}
+
+	private static void productMenu(ProductService product) {
+		System.out.print("\n1. 상품 등록\n2. 상품 정보 수정\n3. 상품 주문\n4. 상품 삭제\n명령어 입력\n>> ");
+		switch(sc.nextInt()) {
+		case 1 :
+
+			break;
+		case 2 :
+
+			break;
+		case 3 :
+
+			break;
+		case 4 :
+
+			break;
+		}
+	}
+
+	private static void boardMenu(BoardService board) {
+		System.out.print("\n1. 게시판 등록\n2. 게시판 수정\n3. 게시판 삭제\n4. 댓글 작성\n명령어 입력\n>> ");
+		switch(sc.nextInt()) {
+		case 1 :
+			board.bInsert();
+			break;
+		case 2 :
+			board.bModify();
+			break;
+		case 3 :
+			board.bDelete();
+			break;
+		case 4 :
+			board.cInsert();
+			break;
+		}
+	}
 }
