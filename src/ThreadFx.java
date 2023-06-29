@@ -43,4 +43,8 @@ public class ThreadFx extends Thread {
 	}
 	
     public void setFlag(boolean flag) { this.flag = flag; }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> c6957d120bd7acb673f9e83104868d236109399b

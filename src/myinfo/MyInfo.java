@@ -10,7 +10,7 @@ public class MyInfo {
 		return instance;
 	}
 	
-	private static String Id, Pw, Name, Address, Age;
+	private static String Id = null, Pw, Name, Address, Age;
 	private static boolean Admin;
 	public static String getId() { return Id; }
 	public static String getPw() { return Pw; }
