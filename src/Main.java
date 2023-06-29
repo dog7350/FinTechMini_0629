@@ -92,16 +92,16 @@ public class Main {
 		System.out.print("\n1. 상품 등록\n2. 상품 정보 수정\n3. 상품 주문\n4. 상품 삭제\n명령어 입력\n>> ");
 		switch(sc.nextInt()) {
 		case 1 :
-
+			product.pInsert();
 			break;
 		case 2 :
-
+			product.pModify();
 			break;
 		case 3 :
-
+			product.pOrder();
 			break;
 		case 4 :
-
+			product.pDelete();
 			break;
 		}
 	}

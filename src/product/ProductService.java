@@ -103,7 +103,7 @@ public class ProductService implements ProductInterface {
 	public boolean checkAdmin() {
 		if(info.getAdmin() == false) {
 			System.out.println("관리자만 실행 가능합니다.");
-			return true;
+			return false;
 		}
 		return true;
 	}
